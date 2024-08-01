@@ -52,7 +52,7 @@ document.getElementById('calculateBtn').addEventListener('click', function () {
 });
 
 
-//risultato bottone annulla
+//risultato bottone reset
 document.getElementById('resetBtn').addEventListener('click', function () {
   document.getElementById('ticketForm').reset();
   document.getElementById('nameResult').textContent = '';
