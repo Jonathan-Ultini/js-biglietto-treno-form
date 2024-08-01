@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <!-- Metadati e collegamento al file CSS -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biglietto Treno con form</title>
@@ -9,17 +10,54 @@
 </head>
 
 <body>
-  <h1>Calcola il Prezzo del Biglietto</h1>
-  <div>
-    <label for="kms">Chilometri da percorrere:</label>
-    <input type="number" id="kms" placeholder="Inserisci i chilometri" min="0">
-  </div>
-  <div>
-    <label for="age">Età del passeggero:</label>
-    <input type="number" id="age" placeholder="Inserisci l'età" min="1">
-  </div>
-  <button id="calculateBtn">Calcola</button>
+  <div class="container">
+    <!-- Titolo della pagina -->
+    <h1>Calcola il Prezzo del Biglietto</h1>
 
+    <!-- Form per l'inserimento dei dati del biglietto -->
+    <form id="ticketForm">
+      <!-- Campo per inserire il nome del passeggero -->
+      <div>
+        <label for="name">Nome del passeggero:</label>
+        <input type="text" id="name" placeholder="Inserisci il nome">
+      </div>
+
+      <!-- Campo per inserire i chilometri da percorrere -->
+      <div>
+        <label for="kilometers">Chilometri da percorrere:</label>
+        <input type="number" id="kilometers" placeholder="Inserisci i chilometri">
+      </div>
+
+      <!-- Selezione per scegliere l'età del passeggero -->
+      <div>
+        <label for="age">Età del passeggero:</label>
+        <select id="age">
+          <option value="minor">Minorenne</option>
+          <option value="adult">Maggiorenne</option>
+          <option value="senior">Anziano</option>
+        </select>
+      </div>
+
+      <!-- Pulsante per calcolare il prezzo del biglietto -->
+      <button type="button" id="calculateBtn">Calcola</button>
+
+      <!-- Pulsante per resettare il form -->
+      <button type="button" id="resetBtn">Reset</button>
+    </form>
+
+    <!-- Sezione per visualizzare i risultati del calcolo -->
+    <div class="result" id="result">
+      <p>Nome: <span id="nameResult"></span></p>
+      <p>Chilometri: <span id="kmResult"></span></p>
+      <p>Età: <span id="ageResult"></span></p>
+      <p>Prezzo senza sconto: €<span id="priceNoDiscountResult"></span></p>
+      <p>Prezzo finale: €<span id="finalPriceResult"></span></p>
+      <p>Carrozza: <span id="carriageNumber"></span></p>
+      <p>Codice Passeggero: <span id="passengerCode"></span></p>
+    </div>
+  </div>
+
+  <!-- Collegamento al file JavaScript -->
   <script src="js/script.js"></script>
 </body>
 
