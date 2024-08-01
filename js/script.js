@@ -2,16 +2,19 @@
 // Quando viene cliccato, verrà eseguita la funzione anonima che segue.
 document.getElementById('calculateBtn').addEventListener('click', function () {
 
+  // Recuperiamo il valore del nome dall'input con id 'name'.
+  const name = document.getElementById('name').value.trim();
+
   // Recuperiamo il valore dei chilometri dall'input con id 'kms' e lo convertiamo in un intero.
-  const kms = parseInt(document.getElementById('kms').value.trim());
+  const kms = parseInt(document.getElementById('kms').value);
 
   // Recuperiamo il valore dell'età dall'input con id 'age' e lo convertiamo in un intero.
-  const age = parseInt(document.getElementById('age').value.trim());
+  const ageCategory = document.getElementById('age').value;
 
   // Controlliamo se i valori inseriti sono validi: devono essere numeri maggiori di 0.
   // Se non sono validi, mostriamo un messaggio di errore nella console e terminiamo la funzione.
-  if (isNaN(kms) || kms <= 0 || isNaN(age) || age <= 0) {
-    console.log('Per favore, inserisci valori validi.');
+  if (!name || isNaN(kms) || kms <= 0 || !ageCategory) {
+    alert('Per favore, inserisci valori validi.');
     return;
   }
 
@@ -24,21 +27,39 @@ document.getElementById('calculateBtn').addEventListener('click', function () {
   // Salviamo il prezzo totale senza sconto formattato con due decimali.
   const priceNoDiscount = totalPrice.toFixed(2);
 
-  // Applichiamo lo sconto in base all'età del passeggero.
-  // Se l'età è inferiore a 18 anni, applichiamo uno sconto del 20%.
-  // Se l'età è superiore a 65 anni, applichiamo uno sconto del 40%.
-  if (age < 18) {
-    totalPrice *= 0.8;
-  } else if (age > 65) {
-    totalPrice *= 0.6;
+  // Applicazione dello sconto basato sull'età
+  if (ageCategory === 'minor') {
+    totalPrice *= 0.8; // Sconto del 20% per i minorenni
+  } else if (ageCategory === 'senior') {
+    totalPrice *= 0.6; // Sconto del 40% per gli over 65
   }
 
   // Formattiamo il prezzo finale con due decimali.
   const finalPrice = totalPrice.toFixed(2);
 
-  // Mostriamo nella console i dettagli calcolati: chilometri, età, prezzo senza sconto e prezzo finale.
-  console.log('Chilometri:', kms);
-  console.log('Età:', age);
-  console.log('Prezzo senza sconto:', priceNoDiscount);
-  console.log('Prezzo finale:', finalPrice);
+  //creiamo usando la funzone random dei numeri per le due variabili
+  const carriageNumber = Math.floor(Math.random() * 10) + 1;
+  const passengerCode = '9' + Math.floor(Math.random() * 90000 + 10000);
+
+  //assegniamo i valori neccessari da mostrare in pagina
+  document.getElementById('nameResult').innerText = name;
+  document.getElementById('kmResult').innerText = kms;
+  document.getElementById('ageResult').innerText = ageCategory;
+  document.getElementById('priceNoDiscountResult').innerText = priceNoDiscount;
+  document.getElementById('finalPriceResult').innerText = finalPrice;
+  document.getElementById('carriageNumber').innerText = carriageNumber;
+  document.getElementById('passengerCode').innerText = passengerCode;
+});
+
+
+//risultato bottone annulla
+document.getElementById('resetBtn').addEventListener('click', function () {
+  document.getElementById('ticketForm').reset();
+  document.getElementById('nameResult').textContent = '';
+  document.getElementById('kmResult').textContent = '';
+  document.getElementById('ageResult').textContent = '';
+  document.getElementById('priceNoDiscountResult').textContent = '';
+  document.getElementById('finalPriceResult').textContent = '';
+  document.getElementById('carriageNumber').textContent = '';
+  document.getElementById('passengerCode').textContent = '';
 });
